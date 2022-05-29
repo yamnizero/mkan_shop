@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:mkan_shop/model/product_models.dart';
 
 import '../widgets/productsDetails/Ccothes_Info.dart';
+import '../widgets/productsDetails/add_cart.dart';
 import '../widgets/productsDetails/image_sliders.dart';
 import '../widgets/productsDetails/size_list.dart';
 
@@ -28,8 +29,11 @@ class ProductDetailsScreen extends StatelessWidget {
                 rate: productModels.rating.rate,
                 description: productModels.description,
               ),
-              SizeList(),
-              // AddCart(),
+             const  SizeList(),
+              AddCart(
+               price: productModels.price,
+                productModels: productModels,
+              ),
 
             ],
           ),
