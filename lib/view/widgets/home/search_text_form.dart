@@ -1,13 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:mkan_shop/logic/controllers/product_controller.dart';
 
 class SearchFormText extends StatelessWidget {
-  const SearchFormText({Key? key}) : super(key: key);
+   SearchFormText({Key? key}) : super(key: key);
+
+  final controller = Get.find<ProductController>();
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
+    return GetBuilder<ProductController>(
+        builder: (_) => TextField(
+      controller: controller.searchTextController,
       cursorColor: Colors.black,
       keyboardType: TextInputType.text,
+      onChanged: (searchName){
+
+      },
       decoration: InputDecoration(
         fillColor: Colors.white,
         focusColor: Colors.red,
@@ -15,10 +24,14 @@ class SearchFormText extends StatelessWidget {
           Icons.search,
           color: Colors.grey,
         ),
-        hintText: "Search you're looking for  ",
+        suffixIcon: IconButton(
+          onPressed: (){},
+          icon: const Icon(Icons.close,color: Colors.black,),
+        ),
+        hintText: "Search with name & price ",
         hintStyle: const TextStyle(
           color: Colors.black45,
-          fontSize: 12,
+          fontSize: 16,
           fontWeight: FontWeight.w500,
         ),
         filled: true,
@@ -47,6 +60,6 @@ class SearchFormText extends StatelessWidget {
           borderRadius: BorderRadius.circular(10),
         ),
       ),
-    );
+    ));
   }
 }
