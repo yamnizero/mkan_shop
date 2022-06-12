@@ -1,10 +1,13 @@
 import 'package:get/get.dart';
+import 'package:mkan_shop/model/product_models.dart';
 import 'package:mkan_shop/services/category_services.dart';
 
 class CategoryController extends GetxController{
 
   var categoryNameList = <String>[].obs;
+  var categoryList = <ProductModels>[].obs;
   var isCategoryLoading = false.obs;
+  var isAllCategoryLoading = false.obs;
 
   List<String> imageCategory = [
     "https://fakestoreapi.com/img/61U7T1koQql._AC_SX679_.jpg",
@@ -31,5 +34,20 @@ class CategoryController extends GetxController{
     finally{
       isCategoryLoading(false );
     }
+  }
+
+   getAllCategorys(String nameCategory)async{
+    isAllCategoryLoading(true);
+    categoryList.value =  await AllCategoryServices.getAllCategory(nameCategory);
+      isAllCategoryLoading(false);
+  }
+
+  getCategoryIndex(int index) async {
+    var categoryAllName = await getAllCategorys(categoryNameList[index]);
+    if(categoryAllName != null){
+      categoryList.value = categoryAllName;
+
+    }
+
   }
 }

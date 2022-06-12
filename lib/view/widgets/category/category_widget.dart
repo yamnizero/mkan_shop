@@ -24,7 +24,10 @@ class CategoryWidget extends StatelessWidget {
             itemBuilder: (context,index){
               return InkWell(
                 onTap: (){
-                  Get.to(()=>CategoryItems());
+                  controller.getCategoryIndex(index);
+                  Get.to(()=>CategoryItems(
+                    categoryTitle: controller.categoryNameList[index ],
+                  ));
                 },
                 child: Container(
                   height: 150,
