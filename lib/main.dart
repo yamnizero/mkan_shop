@@ -3,8 +3,10 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:mkan_shop/language/localiztion.dart';
 import 'package:mkan_shop/logic/controllers/theme_controller.dart';
 import 'package:mkan_shop/routes/routes.dart';
+import 'package:mkan_shop/utils/my_string.dart';
 import 'package:mkan_shop/utils/theme.dart';
 
 void main()  async {
@@ -24,6 +26,9 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       title: 'Mkan Shop',
       debugShowCheckedModeBanner: false,
+      locale: Locale(GetStorage().read<String>('lang').toString()),
+      fallbackLocale: Locale(ene),
+      translations: LocalizationApp(),
       theme: ThemeApp.light,
       darkTheme: ThemeApp.dark,
       themeMode: ThemeController().themeModeGet,

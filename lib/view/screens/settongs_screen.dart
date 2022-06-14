@@ -5,7 +5,9 @@ import 'package:mkan_shop/utils/theme.dart';
 import 'package:mkan_shop/view/widgets/text_utils.dart';
 
 import '../widgets/setting/dark_mode_widget.dart';
+import '../widgets/setting/language_Widget.dart';
 import '../widgets/setting/logout_widget.dart';
+import '../widgets/setting/profile_widget.dart';
 
 
 class SettingScreen extends StatelessWidget {
@@ -18,12 +20,12 @@ class SettingScreen extends StatelessWidget {
       body: ListView(
         padding: const EdgeInsets.all(24),
         children: [
-          //ProfileImage(),
+          ProfileImage(),
           const SizedBox(height: 10,),
           Divider(color: Get.isDarkMode ? Colors.white : Colors.grey,thickness: 2,),
           const SizedBox(height: 20,),
           TextUtils(
-              text: "GENERAL",
+              text: "GENERAL".tr,
               fontSize: 18,
               fontWeight: FontWeight.bold,
               color: Get.isDarkMode ? pinkClr : mainColor,
@@ -32,7 +34,7 @@ class SettingScreen extends StatelessWidget {
           const SizedBox(height: 20,),
           DarkModeWidget(),
           const SizedBox(height: 20,),
-         // LanguageWidget(),
+         LanguageWidget(),
           const SizedBox(height: 20,),
           LogOutWidget(),
         ],
