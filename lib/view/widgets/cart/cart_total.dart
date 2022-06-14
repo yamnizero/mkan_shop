@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mkan_shop/logic/controllers/cart_controller.dart';
+import 'package:mkan_shop/routes/routes.dart';
 import 'package:mkan_shop/utils/theme.dart';
 import 'package:mkan_shop/view/widgets/text_utils.dart';
 
@@ -50,7 +51,9 @@ class CartTotal extends StatelessWidget {
                       elevation: 0,
                       primary: Get.isDarkMode ? pinkClr : mainColor
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Get.toNamed(Routes.paymentScreen);
+                  },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: const  [
