@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mkan_shop/logic/controllers/auth_controller.dart';
 import 'package:mkan_shop/logic/controllers/payment_controller.dart';
 import 'package:mkan_shop/routes/routes.dart';
 import 'package:mkan_shop/utils/theme.dart';
@@ -19,6 +20,7 @@ class _DeliveryContainerWidgetState extends State<DeliveryContainerWidget> {
   bool changeColors = false;
 
   final controller = Get.find<PaymentController>();
+  final authController = Get.find<AuthController>();
 
   @override
   Widget build(BuildContext context) {
@@ -26,10 +28,10 @@ class _DeliveryContainerWidgetState extends State<DeliveryContainerWidget> {
       children: [
         buildRadioContainer(
             icon: Container(),
-            address: "Egypt,sohag medanelshoan el moslemean",
+            address: "Sudan,khartoum Bahri el moaaona",
             name: "Moahammed gamal",
             phone: "5456181315",
-            title: "Royal broast",
+            title: "Mkan Shop",
             value: 1,
             color: changeColors ? Colors.white : Colors.grey.shade300,
             onChanged: (int? value) {
@@ -43,18 +45,12 @@ class _DeliveryContainerWidgetState extends State<DeliveryContainerWidget> {
         ),
         Obx(
           () => buildRadioContainer(
-            address: "Egypt,sohag medanelshoan el moslemean",
-            name: "Ahmed gamal",
+            address: controller.address.value ,
+            name: authController.displayUserName.value,
             phone: controller.phoneNumber.value,
             title: "Delivery",
             value: 2,
             color: changeColors ? Colors.grey.shade300 : Colors.white,
-            onChanged: (int? value) {
-              setState(() {
-                radioContainerIndex = value!;
-                changeColors = !changeColors;
-              });
-            },
             icon: InkWell(
               onTap: () {
                 Get.defaultDialog(
@@ -146,8 +142,15 @@ class _DeliveryContainerWidgetState extends State<DeliveryContainerWidget> {
                 color: Get.isDarkMode ? pinkClr : mainColor,
               ),
             ),
+            onChanged: (int? value) {
+              setState(() {
+                radioContainerIndex = value!;
+                changeColors = !changeColors;
+              });
+              controller.updatePosition();
+            },
           ),
-        )
+        ),
       ],
     );
   }
